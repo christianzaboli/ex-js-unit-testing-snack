@@ -2,6 +2,16 @@
 // Creare un test che verifichi la seguente descrizione:
 
 // 👉 "La funzione getInitials restituisce le iniziali di un nome completo."
+const getInitials = (str) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("");
+};
+test("La funzione getInitials restituisce le iniziali di un nome completo.", () => {
+  expect(getInitials("Christian")).toBe("C");
+  expect(getInitials("Christian Zaboli")).toBe("CZ");
+});
 
 // 🏆 Snack 2
 // Creare un test che verifichi la seguente descrizione:
