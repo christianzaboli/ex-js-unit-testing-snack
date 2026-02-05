@@ -1,12 +1,15 @@
+const {
+  getInitials,
+  createSlug,
+  average,
+  isPalindrome,
+  findPostById,
+} = require("./functions.js");
+
 // 🏆 Snack 1
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione getInitials restituisce le iniziali di un nome completo."
-const getInitials = (str) => {
-  return str
-    .split(" ")
-    .map((word) => word.charAt(0))
-    .join("");
-};
+
 test("La funzione getInitials restituisce le iniziali di un nome completo.", () => {
   expect(getInitials("Christian")).toBe("C");
   expect(getInitials("Christian Zaboli")).toBe("CZ");
@@ -15,15 +18,6 @@ test("La funzione getInitials restituisce le iniziali di un nome completo.", () 
 // 🏆 Snack 2
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione createSlug restituisce una stringa in lowercase."
-const createSlug = (str) => {
-  if (!str.trim()) throw new Error("stringa non valida");
-
-  if (!str.split(" ")[1]) {
-    return str.toLowerCase();
-  }
-
-  return str.replace(/ /g, "-").toLowerCase().replace("è", "e");
-};
 
 test("La funzione createSlug restituisce una stringa in lowercase.", () => {
   expect(createSlug("CHRISTIAN")).toBe("christian");
@@ -32,10 +26,6 @@ test("La funzione createSlug restituisce una stringa in lowercase.", () => {
 // 🏆 Snack 3
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione average calcola la media aritmetica di un array di numeri."
-const average = (arr) => {
-  const sum = arr.reduce((tot, curr) => tot + curr, 0);
-  return sum / arr.length;
-};
 
 test("La funzione average calcola la media aritmetica di un array di numeri.", () => {
   expect(average([1, 2, 3, 4])).toBe(2.5);
@@ -53,11 +43,6 @@ test("La funzione createSlug sostituisce gli spazi con -.", () => {
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione isPalindrome verifica se una stringa è un palindromo."
 // 📌 Nota: una stringa palindroma è una sequenza di caratteri che si legge uguale sia da sinistra a destra che da destra a sinistra.
-const isPalindrome = (str) => {
-  const chars = str.trim().split("");
-  const reversedChars = chars.toReversed();
-  return chars.join("") === reversedChars.join("");
-};
 
 test("La funzione isPalindrome verifica se una stringa è un palindromo.", () => {
   expect(isPalindrome("anna")).toBe(true);
@@ -77,6 +62,8 @@ test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido
 // Creare un test che verifichi le seguenti descrizioni:
 // 👉 "La funzione findPostById restituisce il post corretto dato l’array di post e l’id"
 // Creare uno o più test aggiuntivi che controllino che la struttura dati passati sia conforme (ogni post ha le proprietà id, title e slug, viene passato un id numerico).
+// 🏆 Challenge: describe() - organizzazione dei test
+// Organizza i test in describe() raggruppandoli per argomento.
 const posts = [
   {
     id: 0,
@@ -94,8 +81,16 @@ const posts = [
     slug: "mid",
   },
 ];
-// 🏆 Challenge: describe() - organizzazione dei test
-// Organizza i test in describe() raggruppandoli per argomento.
+
+describe("Trovare il post giusto", () => {
+  test("La funzione findPostById restituisce il post corretto dato l’array di post e l’id", () => {
+    expect(findPostById(posts, 1)).toEqual({
+      id: 1,
+      title: "Post bruttissimo",
+      slug: "bruttissimo",
+    });
+  });
+});
 
 // 🎯 Snack 8 (Bonus)
 // Creare due test che verifichino le seguenti descrizioni:
