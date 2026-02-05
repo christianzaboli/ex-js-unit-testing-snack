@@ -18,7 +18,11 @@ test("La funzione getInitials restituisce le iniziali di un nome completo.", () 
 
 // 👉 "La funzione createSlug restituisce una stringa in lowercase."
 const createSlug = (str) => {
-  return str.toLowerCase();
+  if (!str.split(" ")[1]) {
+    return str.toLowerCase();
+  }
+
+  return str.replace(/ /g, "-").toLowerCase().replace("è", "e");
 };
 
 test("La funzione createSlug restituisce una stringa in lowercase.", () => {
@@ -38,14 +42,15 @@ test("La funzione average calcola la media aritmetica di un array di numeri.", (
   expect(average([1, 2, 3, 4])).toBe(2.5);
   expect(average([10, 20, 30])).toBe(20);
 });
+
 // 🏆 Snack 4
 // Creare un test che verifichi la seguente descrizione:
 
 // 👉 "La funzione createSlug sostituisce gli spazi con -."
+test("La funzione createSlug sostituisce gli spazi con -.", () => {
+  expect(createSlug("Questo è un test")).toBe("questo-e-un-test");
+});
 
-// 📌 Esempi:
-
-// createSlug("Questo è un test") → "questo-e-un-test"
 // 🏆 Snack 5
 // Creare un test che verifichi la seguente descrizione:
 
