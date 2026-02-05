@@ -16,6 +16,8 @@ test("La funzione getInitials restituisce le iniziali di un nome completo.", () 
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione createSlug restituisce una stringa in lowercase."
 const createSlug = (str) => {
+  if (!str.trim()) throw new Error("stringa non valida");
+
   if (!str.split(" ")[1]) {
     return str.toLowerCase();
   }
@@ -66,13 +68,32 @@ test("La funzione isPalindrome verifica se una stringa è un palindromo.", () =>
 // 🏆 Snack 6
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione createSlug lancia un errore se il titolo è vuoto o non valido."
+test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido.", () => {
+  expect(() => createSlug(" ")).toThrow();
+});
 
 // 🏆 Snack 7
 // Crea un array di oggetti posts, in cui ogni oggetto ha le proprietà id, title e slug.
 // Creare un test che verifichi le seguenti descrizioni:
 // 👉 "La funzione findPostById restituisce il post corretto dato l’array di post e l’id"
 // Creare uno o più test aggiuntivi che controllino che la struttura dati passati sia conforme (ogni post ha le proprietà id, title e slug, viene passato un id numerico).
-
+const posts = [
+  {
+    id: 0,
+    title: "Post bellissimo",
+    slug: "bellissimo",
+  },
+  {
+    id: 1,
+    title: "Post bruttissimo",
+    slug: "bruttissimo",
+  },
+  {
+    id: 2,
+    title: "Post mid",
+    slug: "mid",
+  },
+];
 // 🏆 Challenge: describe() - organizzazione dei test
 // Organizza i test in describe() raggruppandoli per argomento.
 
