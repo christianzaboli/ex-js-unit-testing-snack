@@ -17,6 +17,13 @@ test("La funzione getInitials restituisce le iniziali di un nome completo.", () 
 // Creare un test che verifichi la seguente descrizione:
 
 // 👉 "La funzione createSlug restituisce una stringa in lowercase."
+const createSlug = (str) => {
+  return str.toLowerCase();
+};
+
+test("La funzione createSlug restituisce una stringa in lowercase.", () => {
+  expect(createSlug("CHRISTIAN")).toBe("christian");
+});
 
 // 🏆 Snack 3
 // Creare un test che verifichi la seguente descrizione:
